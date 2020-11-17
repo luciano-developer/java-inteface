@@ -14,7 +14,7 @@ import model.service.RentalService;
 public class Program {
 
 	public static void main(String[] args) throws ParseException {
-		
+
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -25,23 +25,23 @@ public class Program {
 		Date start = sdf.parse(sc.nextLine());
 		System.out.print("Retorno (dd/MM/yyyy HH:mm): ");
 		Date finish = sdf.parse(sc.nextLine());
-		
+
 		CarRental cr = new CarRental(start, finish, new Vehicle(model));
-		
+
 		System.out.print("Entre com o preço por hora: ");
 		double pricePerHour = sc.nextDouble();
 		System.out.print("Entre com o preço por dia: ");
 		double pricePerDay = sc.nextDouble();
-		
+
 		RentalService rs = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
 		rs.processInvoice(cr);
-		
+
 		System.out.println();
 		System.out.println("Contrato: ");
-		System.out.print("Pagamento básico: "+ String.format("%.2f%n", cr.getInvoice().getBasicPayment()));
-		System.out.print("Taxa: "+ String.format("%.2f%n", cr.getInvoice().getTax()));
-		System.out.print("Total a pagar: "+ String.format("%.2f%n", cr.getInvoice().getTotalPayment()));
-		
+		System.out.print("Pagamento básico: " + String.format("%.2f%n", cr.getInvoice().getBasicPayment()));
+		System.out.print("Taxa: " + String.format("%.2f%n", cr.getInvoice().getTax()));
+		System.out.print("Total a pagar: " + String.format("%.2f%n", cr.getInvoice().getTotalPayment()));
+
 		sc.close();
 	}
 
